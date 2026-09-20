@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import io.horizon.vip.data.db.HorizonDatabase
 import io.horizon.vip.data.db.ScanDao
 import io.horizon.vip.data.prefs.SettingsDataStore
+import io.horizon.vip.engine.ScanEngine
 import javax.inject.Singleton
 
 @Module
@@ -34,4 +35,8 @@ object AppModule {
     fun provideSettingsDataStore(@ApplicationContext context: Context): SettingsDataStore {
         return SettingsDataStore(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideScanEngine(): ScanEngine = ScanEngine()
 }
