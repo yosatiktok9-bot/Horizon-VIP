@@ -15,6 +15,16 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Ensure Gradle Wrapper jar
+        run: |
+          mkdir -p gradle/wrapper
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+              "https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar"
+          fi
+          chmod +x ./gradlew || true
+          ls -la gradle/wrapper/
+
       - uses: gradle/actions/setup-gradle@v4
 
       - uses: gradle/actions/wrapper-validation@v4
@@ -23,9 +33,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build
-
-      - name: Gradle wrapper permissions
-        run: chmod +x ./gradlew || true
 
       - name: Lint
         run: ./gradlew lintDebug --no-daemon --stacktrace
