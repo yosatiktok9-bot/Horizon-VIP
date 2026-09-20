@@ -4,16 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.sp
 import dagger.hilt.android.AndroidEntryPoint
+import io.horizon.vip.ui.nav.HorizonNavHost
+import io.horizon.vip.ui.theme.HorizonColors
+import io.horizon.vip.ui.theme.HorizonTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -21,18 +18,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color(0xFF05070A)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "HORIZON VIP",
-                    color = Color(0xFF00FFC6),
-                    fontFamily = FontFamily.Monospace,
-                    fontSize = 28.sp
-                )
+            HorizonTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = HorizonColors.bgVoid
+                ) {
+                    HorizonNavHost()
+                }
             }
         }
     }
