@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.chaquopy)
 }
 
 android {
@@ -18,31 +17,11 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "2.0.0"
-
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
-        }
-        python {
-            buildPython("/usr/bin/python3")
-            pip {
-                install("aiohttp")
-                install("dnspython")
-                install("idna")
-            }
-        }
-    }
-
-    externalNativeBuild {
-        cmake {
-            path = file("CMakeLists.txt")
-            version = "3.22.1"
-        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -63,13 +42,6 @@ android {
 
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
-}
-
-chaquopy {
-    defaultConfig {
-        version = "3.11"
-        pyc { src = false }
-    }
 }
 
 dependencies {
@@ -96,9 +68,6 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
-    implementation(libs.glance)
     implementation(libs.timber)
     testImplementation(libs.junit)
-    testImplementation(libs.turbine)
-    testImplementation(libs.mockk)
 }
