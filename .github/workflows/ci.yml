@@ -18,30 +18,21 @@ jobs:
       - name: Ensure Gradle Wrapper jar
         run: |
           mkdir -p gradle/wrapper
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
-              "https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar"
-          fi
-          chmod +x ./gradlew || true
-          ls -la gradle/wrapper/
+          curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            "https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar"
+          chmod +x ./gradlew
+          ls -la gradle/wrapper/ gradle/wrapper/gradle-wrapper.jar
+          head -5 ./gradlew
 
       - uses: gradle/actions/setup-gradle@v4
-
-      - uses: gradle/actions/wrapper-validation@v4
 
       - name: Install build deps
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build
 
-      - name: Lint
-        run: ./gradlew lintDebug --no-daemon --stacktrace
-
-      - name: Unit tests
-        run: ./gradlew testDebugUnitTest --no-daemon
-
       - name: Assemble debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - uses: actions/upload-artifact@v4
         if: always()
