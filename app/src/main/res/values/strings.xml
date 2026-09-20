@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HORIZON VIP</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_scan">Scan</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+    <string name="initiate_scan">INITIATE SCAN</string>
+    <string name="stop_scan">STOP</string>
+    <string name="last_scan">LAST SCAN</string>
+    <string name="no_scans">NO SCANS RECORDED</string>
+    <string name="configure_scan">CONFIGURE SCAN</string>
+    <string name="made_for_operators">Made for operators</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_void">#05070A</color>
+    <color name="bg_base">#0A0E14</color>
+    <color name="bg_surface">#0F1419</color>
+    <color name="bg_elevated">#141B23</color>
+    <color name="neon_mint">#00FFC6</color>
+    <color name="text_hi">#F8FAFC</color>
+    <color name="ok_green">#10B981</color>
+    <color name="err_red">#EF4444</color>
+    <color name="warn_amber">#F59E0B</color>
+</resources>
